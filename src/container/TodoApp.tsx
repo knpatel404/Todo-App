@@ -1,32 +1,53 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
+
+interface TodoListProps {
+  title: string;
+  status: string;
+}
 
 const TodoApp = () => {
-  const [todoText, setTodoText] = useState<string>("");
-  const [todoList, setTodoList] = useState<[{title: string, status: string}]>([{title:"Brushing",status:"Pending"}]);
-  
-  const onClick = () => {
-    const tempItem:[{title: string, status:string}] = [...todoList, {title: todoText, status:"Pending"}];
-    setTodoList(tempItem);
-  }
+  const [todoText, setTodoText] = useState<string>('');
+  const [todoList, setTodoList] = useState<[TodoListProps]>([
+    { title: 'Brushing', status: 'Pending' },
+  ]);
 
-const todoItems = todoList.map((todo, index) =>
-    // Only do this if items have no stable IDs
-    <li key={index} >
+  const onAddItem = () => {
+    const tempItem: TodoListProps = { title: todoText, status: 'Pending' };
+    setTodoList([...todoList, tempItem]);
+  };
+
+  const onRemoveItem = (index: number) => {
+    const tempItem = todoList;
+    tempItem.splice(index, 1);
+    setTodoList([...tempItem]);
+  };
+
+  const todoListView = todoList.map((todo, index) => (
+    <div className="todoItem" key={index}>
+      <button type="button" onClick={() => onRemoveItem(index)}>
+        X
+      </button>
       {todo.title}
-    </li>
-  );
-return (
+    </div>
+  ));
+
+  return (
     <>
       <div className="todoInputBox">
-        <button onClick={onClick}>+</button>
-        <input type="text" onChange={(e) => setTodoText(e.target.value)} name="TodoInput" id="TodoInput"/>
+        <button type="button" onClick={onAddItem}>
+          +
+        </button>
+        <input
+          type="text"
+          onChange={(e) => setTodoText(e.target.value)}
+          name="TodoInput"
+          id="TodoInput"
+        />
       </div>
 
-      <div className="todoListContainer">
-        {todoItems}
-      </div>
+      <div className="todoListContainer">{todoListView}</div>
     </>
   );
-}
+};
 
 export default TodoApp;

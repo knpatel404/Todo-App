@@ -15,3 +15,15 @@ body {
   color: #444;
   text-align: center; }
 
+.todoListContainer {
+  padding: 10px; }
+  .todoListContainer .todoItem {
+    padding: 10px;
+    background: #fff; }
+    .todoListContainer .todoItem button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      box-shadow: none;
+      outline: none; }
+
