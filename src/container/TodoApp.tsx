@@ -8,7 +8,7 @@ interface TodoListProps {
 const TodoApp = () => {
   const [todoText, setTodoText] = useState<string>('');
   const [todoList, setTodoList] = useState<[TodoListProps]>([
-    { title: 'Brushing', status: 'Pending' },
+    { title: 'Tooth pest', status: 'Pending' },
   ]);
 
   const onAddItem = () => {
