@@ -27,6 +27,7 @@ body {
 .todoItem {
   padding: 10px;
   background: $whitecolor;
+  margin-bottom: 5px;
 
   button{
     background: none;
@@ -38,3 +39,44 @@ body {
 }
 }
 
+
+.footer-section{
+position: fixed;
+height: 50px;
+width: 100%;
+background-color: $whitecolor;
+bottom: 0;
+
+ul{
+  list-style: none;
+  text-align: center;
+
+  li{
+    display: inline-block;
+    margin: 0 10px;
+
+    a{
+      text-decoration: none;
+      color: $textcolor
+    }
+  }
+}
+}
+
+
+.todoInputBoxContainer{
+  padding: 15px;
+
+  .todoInputBox{
+    background-color: $whitecolor;
+    padding: 10px;
+
+    input, input:hover, input:focus{
+      border: none;
+      width: 95%;
+      outline: none;
+      font-size: 25px;
+      padding: 5px 20px;
+    }
+  }
+}

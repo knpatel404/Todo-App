@@ -1,19 +1,26 @@
 import React, { useState } from 'react';
+import TodoList from '../component/Todo/TodoList';
+import AddTodoItem from '../component/Todo/AddTodoItem';
 
-interface TodoListProps {
-  title: string;
-  status: string;
-}
+const initialTodo: Todo[] = [
+  {
+    title: "Bathing",
+    status: "inprogress"
+  },
+  {
+    title: "Brushing",
+    status: "inprogress"
+  },
+]
 
 const TodoApp = () => {
-  const [todoText, setTodoText] = useState<string>('');
-  const [todoList, setTodoList] = useState<[TodoListProps]>([
-    { title: 'Tooth pest', status: 'Pending' },
-  ]);
+  
+  const [todoList, setTodoList] = useState(initialTodo);
 
-  const onAddItem = () => {
-    const tempItem: TodoListProps = { title: todoText, status: 'Pending' };
-    setTodoList([...todoList, tempItem]);
+
+  const onAddItem = (addItem:Todo) => {
+    const TempTodoList = [...todoList, addItem];
+    setTodoList(TempTodoList);
   };
 
   const onRemoveItem = (index: number) => {
@@ -22,30 +29,16 @@ const TodoApp = () => {
     setTodoList([...tempItem]);
   };
 
-  const todoListView = todoList.map((todo, index) => (
-    <div className="todoItem" key={index}>
-      <button type="button" onClick={() => onRemoveItem(index)}>
-        X
-      </button>
-      {todo.title}
-    </div>
-  ));
+  
 
   return (
     <>
-      <div className="todoInputBox">
-        <button type="button" onClick={onAddItem}>
-          +
-        </button>
-        <input
-          type="text"
-          onChange={(e) => setTodoText(e.target.value)}
-          name="TodoInput"
-          id="TodoInput"
-        />
+      <div className="todoInputBoxContainer">
+        <AddTodoItem addNewItem={onAddItem}/>
       </div>
-
-      <div className="todoListContainer">{todoListView}</div>
+      <div className="todoListContainer">
+        <TodoList list={todoList} onRemoveClick={onRemoveItem}/>
+      </div>     
     </>
   );
 };

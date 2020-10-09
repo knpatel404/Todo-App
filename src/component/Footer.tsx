@@ -5,7 +5,7 @@ import {  Link } from 'react-router-dom';
 const Footer = () => {
   return (
     
-    <div className="header-section">
+    <div className="footer-section">
       <ul>
         <li>
           <Link to="/">Home</Link>
